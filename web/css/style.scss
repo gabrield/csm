@@ -1,0 +1,17 @@
+$view_width: 780px;
+
+h1,h2,h3,h4,h5 {
+    font-family: 'Ubuntu', sans-serif !important;
+}
+
+#main-window > li {
+    display: inline-block;
+    width: $view_width;
+}
+
+.view {
+    display: inline-block;
+    width: $view_width - 5 - 5;
+    height: 400px;
+    margin: 5px;
+}
