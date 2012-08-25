@@ -12,7 +12,7 @@
     }
 
     MainWindowView.prototype.initialize = function() {
-      return $(this.el).sortable({
+      return this.$el.sortable({
         placeholder: "ui-state-highlight"
       }).disableSelection();
     };
@@ -29,8 +29,19 @@
       CameraView.__super__.constructor.apply(this, arguments);
     }
 
-    CameraView.prototype.initialize = function() {
-      return $(this.el);
+    CameraView.prototype.initialize = function(options) {
+      this.opts = options;
+      return this.render();
+    };
+
+    CameraView.prototype.render = function() {
+      var _this = this;
+      return navigator.webkitGetUserMedia('video', function(stream) {
+        stream = window.webkitURL.createObjectURL(stream);
+        return _this.$el.find('video').attr('src', stream);
+      }, function(exception) {
+        return console.log(exception);
+      });
     };
 
     return CameraView;
@@ -38,12 +49,13 @@
   })(Backbone.View);
 
   $(document).ready(function() {
-    var camera_view, main_window;
+    var main_window;
     main_window = new MainWindowView({
       el: $('#main-window')
     });
-    return camera_view = new CameraView({
-      el: $('#camera-view')
+    return main_window.camera_view = new CameraView({
+      el: $('#camera-view'),
+      main_window: main_window
     });
   });
 

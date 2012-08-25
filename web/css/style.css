@@ -3,7 +3,8 @@ h1, h2, h3, h4, h5 {
 
 #main-window > li {
   display: inline-block;
-  width: 780px; }
+  width: 780px;
+  vertical-align: top; }
 
 .view {
   display: inline-block;
