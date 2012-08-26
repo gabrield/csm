@@ -1,13 +1,36 @@
+body {
+  overflow: hidden; }
+
 h1, h2, h3, h4, h5 {
-  font-family: 'Ubuntu', sans-serif !important; }
+  font-family: 'Ubuntu', sans-serif; }
 
 #main-window > li {
   display: inline-block;
-  width: 780px;
+  width: 760px;
   vertical-align: top; }
+  #main-window > li.toolbar {
+    width: 100%;
+    height: 50px;
+    display: block; }
+    #main-window > li.toolbar:first-of-type {
+      position: static !important;
+      margin-bottom: 30px; }
+    #main-window > li.toolbar:last-of-type {
+      position: absolute;
+      bottom: 0; }
+  #main-window > li:not(.toolbar) {
+    margin: 5px 5px 5px 10px; }
 
 .view {
   display: inline-block;
-  width: 770px;
-  height: 400px;
-  margin: 5px; }
+  height: 100%;
+  padding: 5px;
+  display: block; }
+
+#toolbar-view > ul {
+  float: right;
+  margin: 5px 8px; }
+
+#last-frame-view img {
+  height: 240px;
+  width: 320px; }
