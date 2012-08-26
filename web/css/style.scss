@@ -8,13 +8,15 @@ h1,h2,h3,h4,h5 {
     font-family: 'Ubuntu', sans-serif;
 }
 
+/* Grid */
+
 #main-window > li {
     display: inline-block;
     width: $view_width;
     vertical-align: top;
     &.toolbar {
         width: 100%;
-        height: 50px;
+        min-height: 50px;
         display: block;
         &:first-of-type { 
             position: static !important;
@@ -35,17 +37,41 @@ h1,h2,h3,h4,h5 {
     height: 100%;
     padding: 5px;
     display: block;
+    h3 { margin-bottom: 5px; }
 }
 
 
-#toolbar-view > ul {
-    float: right;
-    margin: 5px 8px;
+/* Specific views */
+
+
+#toolbar-view {
+    height: 50px;
+    & > ul {    
+        float: right;
+        margin: 5px 8px;
+        li { display: inline-block; }
+    }
 }
 
 #last-frame-view {
     img {
         height: 240px;
         width: 320px;
+    }
+}
+
+#framebar-view {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 160px;
+    opacity: 0.85;
+    li {
+        display: inline-block;
+        margin: 5px;
+        img {
+            height: 120px;
+            width: 160px;
+        }
+        max-height: 170px;
     }
 }

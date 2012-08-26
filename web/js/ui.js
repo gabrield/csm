@@ -1,5 +1,5 @@
 (function() {
-  var CameraView, LastFrameView, MainWindowView, ToolbarView,
+  var CameraView, FramebarView, LastFrameView, MainWindowView, ToolbarView,
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
@@ -13,10 +13,15 @@
 
     MainWindowView.prototype.initialize = function() {
       this.$el.sortable({
+        items: "li:not(.toolbar)",
         placeholder: "ui-state-highlight"
       }).disableSelection();
-      return this.$el.bind('sortupdate', function() {
-        return window.camera_view.trigger('render');
+      return this.$el.bind('sortupdate', function(event, ui) {
+        if (!_.any($(ui.item[0]).parents('li'), function(el) {
+          return $(el).is('.toolbar');
+        })) {
+          return window.camera_view.trigger('render');
+        }
       });
     };
 
@@ -85,21 +90,51 @@
       LastFrameView.__super__.constructor.apply(this, arguments);
     }
 
-    LastFrameView.prototype.initialize = function(options) {
+    LastFrameView.prototype.initialize = function() {
       this.camera = window.camera_view;
       return this.bind('render', this.render);
     };
 
     LastFrameView.prototype.render = function() {
-      var canvas, context, video;
+      var canvas, context, image, video;
       canvas = this.camera.canvas[0];
       video = this.camera.video[0];
       context = canvas.getContext('2d');
       context.drawImage(video, 0, 0);
-      return this.$el.find('img').attr('src', canvas.toDataURL('image/webp'));
+      image = this.$el.find('img');
+      image.attr('src', canvas.toDataURL('image/webp'));
+      return window.framebar_view.addFrame(image);
     };
 
     return LastFrameView;
+
+  })(Backbone.View);
+
+  FramebarView = (function(_super) {
+
+    __extends(FramebarView, _super);
+
+    function FramebarView() {
+      FramebarView.__super__.constructor.apply(this, arguments);
+    }
+
+    FramebarView.prototype.render = function() {
+      this.$el.find('ul').sortable({
+        placeholder: "ui-state-highlight"
+      }).disableSelection();
+      return this.$el.animate({
+        scrollTop: this.$el.find('img:last').offset().top
+      }, 'slow');
+    };
+
+    FramebarView.prototype.addFrame = function($image) {
+      var html;
+      html = $image[0].outerHTML;
+      this.$el.find('ul').append("<li>" + html + "</li>");
+      return this.render();
+    };
+
+    return FramebarView;
 
   })(Backbone.View);
 
@@ -113,8 +148,11 @@
     window.camera_view = new CameraView({
       el: $('#camera-view')
     });
-    return window.last_frame_view = new LastFrameView({
+    window.last_frame_view = new LastFrameView({
       el: $('#last-frame-view')
+    });
+    return window.framebar_view = new FramebarView({
+      el: $('#framebar-view')
     });
   });
 
