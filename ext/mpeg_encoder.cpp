@@ -28,7 +28,7 @@ void RGB24MpegEncoder::addFrame(uint8_t *frame_ptr)
 {
     uint8_t *frame = new uint8_t[ _w * _h * _depth];
     
-    memcpy((void*)frame, (const void*)frame_ptr, _size*sizeof(uint8_t *));
+    memcpy((void*)frame, (const void*)frame_ptr, _size*sizeof(uint8_t));
     _frameList.push_back(frame);
 }
 
