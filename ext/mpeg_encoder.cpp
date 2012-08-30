@@ -1,29 +1,29 @@
-#include <iostream>
-#include <algorithm>
-#include <vector>
+#include "mpeg_encoder.h"
 
 
-class RGB24MpegEncoder
+
+AVFrame *RGB24MpegEncoder::allocFrame(int pix_fmt, int width, int height)
 {
-    
-    int _w, _h;
-    int _size;
-    std::vector<uint8_t*> _frameList;
-    const char *_filename;
-    int _depth; 
+    AVFrame *picture;
+    uint8_t *picture_buf;
+    int size;
 
-    public:
-        RGB24MpegEncoder(int , int);
-        RGB24MpegEncoder(uint8_t *, int , int);
-        ~RGB24MpegEncoder();
-        void addFrame(uint8_t *);
-	uint8_t *frameAt(int);
-        void setOutputFile(const char *outfile) { _filename = outfile; }
-	void encodeMpeg();
-	int frameListSize(){ return _frameList.size(); }
-	int width() { return _w; }
-	int heigth() { return _h; }
-};
+    picture = avcodec_alloc_frame();
+    if (!picture)
+        return NULL;
+    size = avpicture_get_size((PixelFormat)pix_fmt, width, height);
+    printf("size == %d\n", size);
+    picture_buf = (uint8_t*)av_malloc(size);
+    if (!picture_buf) {
+        av_free(picture);
+        return NULL;
+    }
+    avpicture_fill((AVPicture *)picture, picture_buf,
+                (PixelFormat)pix_fmt, width, height);
+
+    return picture;
+}
+
 
 
 void RGB24MpegEncoder::addFrame(uint8_t *frame_ptr)

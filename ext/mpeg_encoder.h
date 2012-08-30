@@ -20,12 +20,15 @@
 
 class RGB24MpegEncoder
 {
-    
-    int _w, _h;
-    int _size;
-    std::vector<uint8_t*> _frameList;
-    const char *_filename;
-    int _depth; 
+
+   private: 
+        int _w, _h;
+        int _size;
+        std::vector<uint8_t*> _frameList;
+        const char *_filename;
+        int _depth;
+     
+        AVFrame *allocFrame(int, int, int); 
 
     public:
         RGB24MpegEncoder(int , int);
