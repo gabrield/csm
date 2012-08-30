@@ -63,6 +63,7 @@ void RGB24MpegEncoder::encodeMpeg()
     if(_filename != NULL)
     {
         //commence a faire quelque chose
+        // il faut copier le code dans le t_ffmpeg.c ici, c'est le code qui fara l'encodage
     }
     else
     {
