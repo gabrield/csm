@@ -25,7 +25,6 @@ AVFrame *RGB24MpegEncoder::allocFrame(int pix_fmt, int width, int height)
 }
 
 
-
 void RGB24MpegEncoder::addFrame(uint8_t *frame_ptr)
 {
     uint8_t *frame = new uint8_t[ _w * _h * _depth];
@@ -57,6 +56,7 @@ RGB24MpegEncoder::RGB24MpegEncoder(uint8_t *img_ptr, int w, int h)
     _size = _w * _h * _depth;
    addFrame(img_ptr);
 }
+
 
 void RGB24MpegEncoder::encodeMpeg()
 {
