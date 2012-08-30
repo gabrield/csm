@@ -5,9 +5,10 @@
 
 int main()
 {
-    RGB24MpegEncoder encoder(100, 100);
+    RGB24MpegEncoder *encoder = new RGB24MpegEncoder(100, 100);
 
-    std::cout << encoder.width() << " " << encoder.heigth() << std::endl;
+    std::cout << encoder->width() << " " << encoder->heigth() << std::endl;
+    delete encoder;
     
     return 0;   
 }
