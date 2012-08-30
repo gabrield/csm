@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+
 //C++ headers
 #include <iostream>
 #include <algorithm>
@@ -12,10 +13,12 @@
 
 
 //ffmpeg related headers
+extern "C"
+{
 #include "libavcodec/avcodec.h"
 #include "libavutil/mathematics.h"
 #include "libswscale/swscale.h"
-
+}
 
 
 class RGB24MpegEncoder
