@@ -28,7 +28,7 @@ class RGB24MpegEncoder
         const char *_filename;
         int _depth;
      
-        AVFrame *allocFrame(int, int, int); 
+        AVFrame *allocAVFrame(int, int, int); 
 
     public:
         RGB24MpegEncoder(int , int);
@@ -42,6 +42,5 @@ class RGB24MpegEncoder
 	int width() { return _w; }
 	int heigth() { return _h; }
 };
-
 
 #endif //mpeg_encoder_h
