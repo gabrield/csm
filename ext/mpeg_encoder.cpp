@@ -74,6 +74,6 @@ void RGB24MpegEncoder::encodeMpeg()
 RGB24MpegEncoder::~RGB24MpegEncoder()
 {
     for (int i = 0; i < _frameList.size(); i++ )
-        free(_frameList[i]);
+        delete _frameList[i];
 }
 
