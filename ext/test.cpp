@@ -38,7 +38,7 @@ int main()
 
     std::cout << w << " " << h << std::endl;
 
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 25; i++)
 
     {
         enc->addFrame(img); 

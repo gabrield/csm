@@ -1,25 +1,29 @@
-#ifndef mpeg_encoder_h
-#define mpeg_encoder_h
-//C headers
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <time.h>
+#ifndef _mpeg_encoder_h_
+#define _mpeg_encoder_h_
 
 //C++ headers
 #include <iostream>
 #include <algorithm>
 #include <vector>
 
-
-//ffmpeg related headers
-extern "C"
+#ifdef __cplusplus
+extern "c"
 {
-#include "libavcodec/avcodec.h"
-#include "libavutil/mathematics.h"
-#include "libswscale/swscale.h"
-}
+#endif
+    //C headers
+    #include <stdlib.h>
+    #include <stdio.h>
+    #include <string.h>
+    #include <time.h>
 
+    //ffmpeg related headers
+    #include "libavcodec/avcodec.h"
+    #include "libavutil/mathematics.h"
+    #include "libswscale/swscale.h"
+#ifdef __cplusplus
+}
+#endif
+ 
 
 class RGB24MpegEncoder
 {

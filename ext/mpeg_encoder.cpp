@@ -72,8 +72,13 @@ void RGB24MpegEncoder::encodeMpeg()
 
         printf("Video encoding\n");
 
-        /* find the mpeg1 video encoder */
-        codec = avcodec_find_encoder(CODEC_ID_MPEG1VIDEO);
+        avcodec_register_all();
+        av_register_all();
+        avfilter_register_all();
+
+
+        /* find the mpeg2 video encoder */
+        codec = avcodec_find_encoder(CODEC_ID_MPEG2VIDEO);
         if (!codec) {
             fprintf(stderr, "[1] codec not found\n");
             exit(1);
@@ -92,14 +97,15 @@ void RGB24MpegEncoder::encodeMpeg()
         c->pix_fmt = PIX_FMT_YUV420P;
 
         /* open it */
-        if (avcodec_open2(c, codec, NULL) < 0) {
+        if (avcodec_open(c, codec) < 0) {
             fprintf(stderr, "could not open codec\n");
-            exit(1);
+            return;
         }
 
         f = fopen(_filename, "wb");
         if (!f) {
             fprintf(stderr, "could not open %s\n", _filename);
+            return;
         }
 
         /* alloc image and output buffer */
