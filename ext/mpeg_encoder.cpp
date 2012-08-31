@@ -61,12 +61,10 @@ void RGB24MpegEncoder::encodeMpeg()
 {
     if(_filename != NULL)
     {
-        //commence a faire quelque chose
-        // il faut copier le code dans le t_ffmpeg.c ici, c'est le code qui fara l'encodage
 
         AVCodec *codec;
         AVCodecContext *c= NULL;
-        int i, out_size, size, x, y, rgb_buf_size;
+        int i, out_size, size, rgb_buf_size;
         FILE *f;
         AVFrame *picture;
         AVFrame *rgb_picture;
@@ -77,7 +75,7 @@ void RGB24MpegEncoder::encodeMpeg()
         /* find the mpeg1 video encoder */
         codec = avcodec_find_encoder(CODEC_ID_MPEG1VIDEO);
         if (!codec) {
-            fprintf(stderr, "codec not found\n");
+            fprintf(stderr, "[1] codec not found\n");
             exit(1);
         }
 
@@ -94,7 +92,7 @@ void RGB24MpegEncoder::encodeMpeg()
         c->pix_fmt = PIX_FMT_YUV420P;
 
         /* open it */
-        if (avcodec_open(c, codec) < 0) {
+        if (avcodec_open2(c, codec, NULL) < 0) {
             fprintf(stderr, "could not open codec\n");
             exit(1);
         }
@@ -221,7 +219,7 @@ void RGB24MpegEncoder::encodeMpeg()
 
 RGB24MpegEncoder::~RGB24MpegEncoder()
 {
-    for (int i = 0; i < _frameList.size(); i++ )
+    for (int i = 0; i < (int)_frameList.size(); i++ )
         delete _frameList[i];
 }
 

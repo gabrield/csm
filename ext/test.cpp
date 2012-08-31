@@ -35,12 +35,20 @@ int main()
     unsigned char *img = (unsigned char*) malloc(sizeof(unsigned char)*w*h*3);
     rand_img(img, w, h, 3);
 
-    enc->addFrame(img); 
-    enc->addFrame(img); 
-    enc->addFrame(img); 
 
     std::cout << w << " " << h << std::endl;
+
+    for(int i = 0; i < 100; i++)
+
+    {
+        enc->addFrame(img); 
+        rand_img(img, w, h, 3);
+    }
+
     std::cout << enc->frameListSize() << std::endl;
+
+    enc->setOutputFile("test.mpg");
+    enc->encodeMpeg();
 
     delete enc;
     free(img);
