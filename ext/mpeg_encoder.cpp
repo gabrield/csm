@@ -66,11 +66,11 @@ void RGB24MpegEncoder::encodeMpeg()
 
         AVCodec *codec;
         AVCodecContext *c= NULL;
-        int i, out_size, size, x, y, outbuf_size;
+        int i, out_size, size, x, y, rgb_buf_size;
         FILE *f;
         AVFrame *picture;
         AVFrame *rgb_picture;
-        uint8_t *outbuf, *p_buf, *picture_buf;
+        uint8_t *rgb_buf, *yuv_buf, *picture_buf;
 
         printf("Video encoding\n");
 
@@ -101,23 +101,23 @@ void RGB24MpegEncoder::encodeMpeg()
 
         f = fopen(_filename, "wb");
         if (!f) {
-            fprintf(stderr, "could not open %s\n", filename);
+            fprintf(stderr, "could not open %s\n", _filename);
         }
 
         /* alloc image and output buffer */
-        outbuf_size = c->width * c->height;
-        outbuf = (unsigned char*)av_malloc(outbuf_size);
-        size = c->width * c->height;
-        p_buf =malloc((size * 3) / 2); /* size for YUV 420 */
+        rgb_buf_size = c->width * c->height;
+        rgb_buf = (uint8_t*)av_malloc(rgb_buf_size);
+        //size = c->width * c->height;
+        yuv_buf = (uint8_t*)malloc((size * 3) / 2); /* size for YUV 420 */
 
 
         //picture = alloc_frame(PIX_FMT_YUV420P, c->width, c->height);
         picture = avcodec_alloc_frame();
         //rgb_picture = alloc_frame(PIX_FMT_RGB24, c->width, c->height);
 
-        picture->data[0] = p_buf;
-        picture->data[1] = picture->data[0] + size;
-        picture->data[2] = picture->data[1] + size / 4;
+        picture->data[0] = yuv_buf;
+        picture->data[1] = picture->data[0] + rgb_buf_size;
+        picture->data[2] = picture->data[1] + rgb_buf_size / 4;
         picture->linesize[0] = c->width;
         picture->linesize[1] = c->width / 2;
         picture->linesize[2] = c->width / 2;
@@ -127,7 +127,8 @@ void RGB24MpegEncoder::encodeMpeg()
         //rgb_picture = alloc_frame(PIX_FMT_RGB24, 640, 480);
         
         static struct SwsContext *img_convert_ctx;
-        
+        static int sws_flags = SWS_BICUBIC;
+
         if (img_convert_ctx == NULL)
         {
             img_convert_ctx = sws_getContext(c->width, c->height,
@@ -142,11 +143,11 @@ void RGB24MpegEncoder::encodeMpeg()
             }
         }
         
-        unsigned char *img = (unsigned char*) malloc(sizeof(unsigned char)*640*480*3);
-        rand_img(img, 640, 480, 3);
-        save_ppm_24bpp("test.ppm", img, 640, 480);
+        //uint8_t *img = (uint8_t*) malloc(sizeof(uint8_t)*640*480*3);
+        //rand_img(img, 640, 480, 3);
+        //save_ppm_24bpp("test.ppm", img, 640, 480);
         
-        rgb_picture = alloc_frame(PIX_FMT_RGB24, 640, 480);
+        rgb_picture = allocAVFrame(PIX_FMT_RGB24, c->width, c->height);
         /*
          if (!rgb_picture)
             return NULL;
@@ -161,48 +162,50 @@ void RGB24MpegEncoder::encodeMpeg()
         avpicture_fill((AVPicture *)rgb_picture, picture_buf,
                        PIX_FMT_RGB24, c->width, c->height);
        */
-       
-        rgb_picture->data[0] = img;
-        rgb_picture->data[1] = NULL;
-        rgb_picture->data[2] = NULL;
-        rgb_picture->linesize[0] = c->width * 3;
-        
-        sws_scale(img_convert_ctx, rgb_picture->data, rgb_picture->linesize,
-                            0, c->height, picture->data, picture->linesize);
+      
+        for(int i = 0; i < _frameList.size(); i++)
+        {
+	    rgb_picture->data[0] = _frameList[i];
+	    rgb_picture->data[1] = NULL;
+	    rgb_picture->data[2] = NULL;
+	    rgb_picture->linesize[0] = c->width * 3;
+	    
+	    sws_scale(img_convert_ctx, rgb_picture->data, rgb_picture->linesize,
+			0, c->height, picture->data, picture->linesize);
 
 
 
         /* encode 10 second of video */
-        for(i=0;i<250;i++) {
+        //for(i=0;i<250;i++) {
             fflush(stdout);
             printf("Encoding...\n");
             /* encode the image */
-            out_size = avcodec_encode_video(c, outbuf, outbuf_size, picture);
+            out_size = avcodec_encode_video(c, rgb_buf, rgb_buf_size, picture);
             printf("encoding frame %3d (size=%5d)\n", i, out_size);
-            fwrite(outbuf, 1, out_size, f);
+            fwrite(rgb_buf, 1, out_size, f);
             //rand_img(img, 640, 480, 3);
+        //}
         }
-
         /* get the delayed frames */
         for(; out_size; i++) {
             fflush(stdout);
 
-            out_size = avcodec_encode_video(c, outbuf, outbuf_size, NULL);
+            out_size = avcodec_encode_video(c, rgb_buf, rgb_buf_size, NULL);
             printf("write frame %3d (size=%5d)\n", i, out_size);
-            fwrite(outbuf, 1, out_size, f);
+            fwrite(rgb_buf, 1, out_size, f);
         }
 
         /* add sequence end code to have a real mpeg file */
-        outbuf[0] = 0x00;
-        outbuf[1] = 0x00;
-        outbuf[2] = 0x01;
-        outbuf[3] = 0xb7;
-        fwrite(outbuf, 1, 4, f);
+        rgb_buf[0] = 0x00;
+        rgb_buf[1] = 0x00;
+        rgb_buf[2] = 0x01;
+        rgb_buf[3] = 0xb7;
+        fwrite(rgb_buf, 1, 4, f);
         fclose(f);
         free(picture_buf);
-        free(outbuf);
+        free(rgb_buf);
         
-        free(img);
+        //free(img);
 
         avcodec_close(c);
         av_free(c);
