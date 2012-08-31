@@ -26,7 +26,7 @@ void rand_img(unsigned char *img_ptr, int w, int h, int d)
 
 int main()
 {
-    RGB24MpegEncoder *enc = new RGB24MpegEncoder(100, 100);
+    RGB24MpegEncoder *enc = new RGB24MpegEncoder(640, 480);
     int w, h;
     
     w = enc->width();
@@ -44,6 +44,6 @@ int main()
 
     delete enc;
     free(img);
-    
+
     return 0;   
 }
