@@ -1,6 +1,5 @@
 #include "mpeg_encoder.h"
 
-
 AVFrame *RGB24MpegEncoder::allocAVFrame(int pix_fmt, int width, int height)
 {
     AVFrame *picture;

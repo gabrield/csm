@@ -7,7 +7,7 @@
 #include <vector>
 
 #ifdef __cplusplus
-extern "c"
+extern "C"
 {
 #endif
     //C headers
@@ -18,7 +18,8 @@ extern "c"
 
     //ffmpeg related headers
     #include "libavcodec/avcodec.h"
-    #include "libavutil/mathematics.h"
+    #include "libavfilter/avfilter.h"
+    #include "libavformat/avformat.h"
     #include "libswscale/swscale.h"
 #ifdef __cplusplus
 }
