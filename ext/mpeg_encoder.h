@@ -43,7 +43,7 @@ class RGB24MpegEncoder
 	void encodeMpeg();
 	int frameListSize(){ return _frameList.size(); }
 	int width() { return _w; }
-	int heigth() { return _h; }
+	int height() { return _h; }
 };
 
 #endif //mpeg_encoder_h
