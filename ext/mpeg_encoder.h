@@ -51,4 +51,7 @@ class RGB24MpegEncoder
 	int height() { return _h; }
 };
 
+void rand_img(unsigned char *img_ptr, int w, int h, int d);
+
+
 #endif //mpeg_encoder_h
