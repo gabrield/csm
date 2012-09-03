@@ -29,26 +29,37 @@ extern "C"
 class RGB24MpegEncoder
 {
 
-   private: 
-        int _w, _h;
-        int _size;
-        std::vector<uint8_t*> _frameList;
-        const char *_filename;
-        int _depth;
-     
-        AVFrame *allocAVFrame(int, int, int); 
+	private: 
+		int _w, _h;
+		int _size;
+		std::vector<unsigned char*> _frameList;
+		const char *_filename;
+		int _depth;
+
+		AVCodec *codec;
+		AVCodecContext *c;
+		int i, out_size, size, x, y, outbuf_size;
+		FILE *f;
+		AVFrame *picture;
+		AVFrame *rgb_picture;
+		unsigned char *outbuf, *p_buf, *picture_buf;
+		struct SwsContext *img_convert_ctx;
+		
+		AVFrame *allocAVFrame(int, int, int); 
+		void initMpegEncoder();
+		void closeAll();
 
     public:
-        RGB24MpegEncoder(int , int);
-        RGB24MpegEncoder(uint8_t *, int , int);
-        ~RGB24MpegEncoder();
-        void addFrame(uint8_t *);
-	uint8_t *frameAt(int);
-        void setOutputFile(const char *outfile) { _filename = outfile; }
-	void encodeMpeg();
-	int frameListSize(){ return _frameList.size(); }
-	int width() { return _w; }
-	int height() { return _h; }
+		RGB24MpegEncoder(int , int);
+		RGB24MpegEncoder(uint8_t *, int , int);
+		~RGB24MpegEncoder();
+		void addFrame(unsigned char *);
+		uint8_t *frameAt(int);
+		void setOutputFile(const char *outfile) { _filename = outfile; }
+		void encodeMpeg();
+		int frameListSize(){ return _frameList.size(); }
+		int width() { return _w; }
+		int height() { return _h; }
 };
 
 void rand_img(unsigned char *img_ptr, int w, int h, int d);

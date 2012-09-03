@@ -14,10 +14,12 @@ int main()
     uint8_t *img = (uint8_t*) malloc(sizeof(uint8_t)*w*h*3);
     rand_img(img, w, h, 3);
 
+	enc->setOutputFile("test.mpg");
+
 
     std::cout << w << " " << h << std::endl;
 
-    for(int i = 0; i < 30; i++)
+    for(int i = 0; i < 190; i++)
 
     {
         enc->addFrame(img); 
@@ -26,8 +28,8 @@ int main()
 
     std::cout << enc->frameListSize() << std::endl;
 
-    enc->setOutputFile("test.mpg");
-    enc->encodeMpeg();
+    
+    //enc->encodeMpeg();
 
     delete enc;
     free(img);
