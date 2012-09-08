@@ -102,7 +102,7 @@
       context = canvas.getContext('2d');
       context.drawImage(video, 0, 0);
       image = this.$el.find('img');
-      image.attr('src', canvas.toDataURL('image/webp'));
+      image.attr('src', canvas.toDataURL('image/jpeg'));
       return window.framebar_view.addFrame(image);
     };
 
@@ -139,21 +139,33 @@
   })(Backbone.View);
 
   $(document).ready(function() {
-    new MainWindowView({
-      el: $('#main-window')
-    });
-    new ToolbarView({
-      el: $('#toolbar-view')
-    });
-    window.camera_view = new CameraView({
-      el: $('#camera-view')
-    });
-    window.last_frame_view = new LastFrameView({
-      el: $('#last-frame-view')
-    });
-    return window.framebar_view = new FramebarView({
-      el: $('#framebar-view')
-    });
+    if (!('webkitGetUserMedia' in navigator || 'getUserMedia' in navigator)) {
+      return $('#old-browser-dialog').dialog({
+        title: 'Update your browser',
+        modal: true,
+        buttons: {
+          ok: function() {
+            return document.location.href = 'http://google.com/chrome';
+          }
+        }
+      });
+    } else {
+      new MainWindowView({
+        el: $('#main-window')
+      });
+      new ToolbarView({
+        el: $('#toolbar-view')
+      });
+      window.camera_view = new CameraView({
+        el: $('#camera-view')
+      });
+      window.last_frame_view = new LastFrameView({
+        el: $('#last-frame-view')
+      });
+      return window.framebar_view = new FramebarView({
+        el: $('#framebar-view')
+      });
+    }
   });
 
 }).call(this);

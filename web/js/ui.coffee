@@ -42,7 +42,7 @@ class LastFrameView extends Backbone.View
         context.drawImage video, 0, 0
         
         image = @$el.find('img')
-        image.attr 'src', canvas.toDataURL 'image/webp'
+        image.attr 'src', canvas.toDataURL 'image/jpeg'
         window.framebar_view.addFrame image
         
 class FramebarView extends Backbone.View
@@ -57,10 +57,17 @@ class FramebarView extends Backbone.View
     
               
 $(document).ready ->
-    new MainWindowView el: $ '#main-window'
-    new ToolbarView el: $ '#toolbar-view'
-    window.camera_view = new CameraView el: $ '#camera-view'
-    window.last_frame_view = new LastFrameView el: $ '#last-frame-view'
-    window.framebar_view = new FramebarView el: $ '#framebar-view'
+    if not ('webkitGetUserMedia' of navigator or 'getUserMedia' of navigator)
+        $('#old-browser-dialog').dialog
+            title: 'Update your browser'
+            modal: yes
+            buttons:
+              ok: -> document.location.href = 'http://google.com/chrome'
+    else
+      new MainWindowView el: $ '#main-window'
+      new ToolbarView el: $ '#toolbar-view'
+      window.camera_view = new CameraView el: $ '#camera-view'
+      window.last_frame_view = new LastFrameView el: $ '#last-frame-view'
+      window.framebar_view = new FramebarView el: $ '#framebar-view'
     
     

@@ -4,6 +4,15 @@ body {
 h1, h2, h3, h4, h5 {
   font-family: 'Ubuntu', sans-serif; }
 
+.dialog {
+  display: none; }
+  .dialog p {
+    margin: 10px 6px 13px;
+    font-size: 12px; }
+
+div.ui-dialog div.ui-dialog-buttonpane div.ui-dialog-buttonset button.ui-button span.ui-button-text {
+  font-size: 11px; }
+
 /* Grid */
 #main-window > li {
   display: inline-block;
