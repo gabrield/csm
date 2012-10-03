@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'coffee-script'
 
 
 get '/' do
