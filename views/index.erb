@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+        <link type="text/css" href="js/jquery-ui/css/jquery-ui.css" rel="Stylesheet" /> 
+        <link type="text/css" href="js/jquery-ui/css/ui-lightness/jquery-ui-1.8.23.custom.css" rel="Stylesheet" /> 
+        <link type="text/css" href="css/reset.css" rel="Stylesheet" />  
+        <link type="text/css" href="css/style.css" rel="Stylesheet" />  
+        <script type="text/javascript" src="js/jquery-ui/js/jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui/js/jquery-ui-1.8.23.custom.min.js"></script>
+        <script type="text/javascript" src="js/underscore.js"></script>
+        <script type="text/javascript" src="js/backbone.js"></script>
+        <script type="text/javascript" src="js/ui.js"></script>
+    </head>
+    
+    <body>
+        <ul id="main-window">
+            <li class="ui-state-default toolbar">
+                <div id="toolbar-view" class="ui-widget-content view">
+                    <ul>
+                        <li><button id='upload'>Upload</button></li>
+                        <li><button id='shot'>Shot</button></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="ui-state-default">
+                <div id="camera-view" class="ui-widget-content view">
+                    <h3 class="ui-widget-header">Camera View</h3>
+                    <video autoplay></video>
+                    <canvas style="display:none;"></canvas>
+                </div>
+            </li>
+            <li class="ui-state-default">
+                <div id="last-frame-view" class="ui-widget-content view">
+                    <h3 class="ui-widget-header">Last Frame View</h3>
+                    <img id="frame" alt="" src=""/>
+                </div>
+            </li>
+            <li class="ui-state-default toolbar">
+                <div id="framebar-view" class="ui-widget-content view">
+                    <ul>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        
+        <div id='old-browser-dialog' class='dialog'>
+          <p>
+            <span class="ui-icon ui-icon-circle-close" style="float:left; margin:0 7px 50px 0;"></span>
+            Your browser is too old and need to be updated.
+          </p>
+          <p>
+            You will be redirected to Chrome download page.
+          </p>
+        </div>
+    </body>
+    
+</html>
