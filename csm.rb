@@ -2,7 +2,12 @@ require 'sinatra'
 
 
 get '/' do
- erb :index
+  erb :index
+end
+
+
+get '/coffee/'  do
+  coffee :index
 end
 
 
