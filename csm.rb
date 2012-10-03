@@ -6,8 +6,8 @@ get '/' do
   erb :index
 end
 
-# to render the coffee script to the main page
 get '/coffee/'  do
+  # to render the coffee script to the main page
   coffee :ui
 end
 
