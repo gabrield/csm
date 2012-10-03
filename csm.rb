@@ -8,7 +8,7 @@ end
 
 
 get '/coffee/'  do
-  coffee :index
+  coffee :ui
 end
 
 
