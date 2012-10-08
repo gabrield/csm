@@ -22,7 +22,7 @@ class CameraView extends Backbone.View
         @render()
         
     render: ->
-        navigator.webkitGetUserMedia 'video',
+        navigator.webkitGetUserMedia {video: true},
             (stream) =>
                 stream = window.webkitURL.createObjectURL stream
                 @video.attr('src', stream)
@@ -42,7 +42,7 @@ class LastFrameView extends Backbone.View
         context.drawImage video, 0, 0
         
         image = @$el.find('img')
-        image.attr 'src', canvas.toDataURL 'image/jpeg'
+        image.attr 'src', canvas.toDataURL 'image/webp'
         window.framebar_view.addFrame image
         
 class FramebarView extends Backbone.View
