@@ -39,10 +39,10 @@ class LastFrameView extends Backbone.View
         video = @camera.video[0]
         
         context = canvas.getContext '2d'
-        context.drawImage video, 0, 0
+        context.drawImage video, 0, 0, 320/2, 240/2
         
         image = @$el.find('img')
-        image.attr 'src', canvas.toDataURL 'image/webp'
+        image.attr 'src', canvas.toDataURL 'image/webp 1'
         window.framebar_view.addFrame image
         
 class FramebarView extends Backbone.View
