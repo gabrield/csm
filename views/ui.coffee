@@ -7,12 +7,18 @@ class MainWindowView extends Backbone.View
 class ToolbarView extends Backbone.View
     events: 
         'click button#shot': 'shot'
+        'click button#save': 'save'
     
     initialize: ->
         @$el.find('button').button()
         
     shot: ->
         window.last_frame_view.trigger('render')
+        
+    save: ->
+        $('#saving-dialog').dialog
+            title: 'Saving'
+            modal: yes
         
 class CameraView extends Backbone.View
     initialize: ->
@@ -54,7 +60,6 @@ class FramebarView extends Backbone.View
         html = $image[0].outerHTML
         @$el.find('ul').append "<li>#{html}</li>"
         @render()
-    
               
 $(document).ready ->
     if not ('webkitGetUserMedia' of navigator or 'getUserMedia' of navigator)
