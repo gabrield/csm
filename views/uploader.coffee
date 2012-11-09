@@ -4,9 +4,9 @@ class Uploader extends Backbone.Model
         image_id = 0
         _.each images, (image) =>
             image_id += 1
-            @set 'file', $(image).attr 'src'
-            @set 'image_id', image_id
-            @save()
+            $.post '/save/',
+                file: $(image).attr 'src'
+                image_id: image_id
         
         
 $(document).ready ->
