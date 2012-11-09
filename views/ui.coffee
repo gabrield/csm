@@ -16,6 +16,8 @@ class ToolbarView extends Backbone.View
         window.last_frame_view.trigger('render')
         
     save: ->
+        window.uploader.addImages $ 'img'
+        window.uploader.save
         $('#saving-dialog').dialog
             title: 'Saving'
             modal: yes

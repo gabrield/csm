@@ -6,9 +6,8 @@ get '/' do
   erb :index
 end
 
-get '/coffee/'  do
-  # to render the coffee script to the main page
-  coffee :ui
+get '/js/coffee/:file.js'  do |file|
+  coffee file.to_sym
 end
 
 
