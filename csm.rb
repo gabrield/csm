@@ -18,8 +18,9 @@ post '/save/' do
     content = content.gsub 'data:image/png;base64,', ''
     img = Base64.decode64(content)
 
-
     File.open("img" + image_id + ".png", 'wb') { |file| file.write(img) }
+    
+    200
 end
 
 

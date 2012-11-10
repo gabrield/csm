@@ -8,6 +8,7 @@ class ToolbarView extends Backbone.View
     events: 
         'click button#shot': 'shot'
         'click button#save': 'save'
+        'click button#finished': 'finished'
     
     initialize: ->
         @$el.find('button').button()
@@ -16,11 +17,19 @@ class ToolbarView extends Backbone.View
         window.last_frame_view.trigger('render')
         
     save: ->
-        window.uploader.addImages $ 'img'
-        window.uploader.save
-        $('#saving-dialog').dialog
+        dialog = $('#saving-dialog').dialog
             title: 'Saving'
             modal: yes
+            
+        window.uploader.save_images $('img'), =>
+            dialog.remove()
+            
+    finished: ->
+        window.uploader.finished()
+        $('#finished-dialog').dialog
+            title: 'Saving'
+            modal: yes
+    
         
 class CameraView extends Backbone.View
     initialize: ->

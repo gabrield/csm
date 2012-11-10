@@ -23,6 +23,7 @@
                     <h1>Cloud Stop Motion</h1>
                     <ul>
                         <li><button id='save'>Save</button></li>
+                        <li><button id='finished'>Finished</button></li>
                         <li><button id='shot'>Take a Pic</button></li>
                     </ul>
                 </div>
@@ -48,21 +49,7 @@
             </li>
         </ul>
         
-        <div id='old-browser-dialog' class='dialog'>
-          <p>
-            <span class="ui-icon ui-icon-circle-close" style="float:left; margin:0 7px 50px 0;"></span>
-            Your browser is too old and need to be updated.
-          </p>
-          <p>
-            You will be redirected to Chrome download page.
-          </p>
-        </div>
-        
-        <div id='saving-dialog' class='dialog'>
-          <p>
-            Your work is being saved. Please wait...
-          </p>
-        </div>
+        <%= erb :dialogs %>
     </body>
     
 </html>
