@@ -1,1 +1,11 @@
 CSM - Cloud Stop Motion
+
+To run CSM, at the command line, type:
+
+# ruby csm.rb
+
+
+Open your browser and point it to:
+http://localhost:4567
+
+Enjoy!
