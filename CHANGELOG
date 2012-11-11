@@ -1,0 +1,16 @@
+CSM - Cloud Stop Motion- ChangeLog
+
+Legend:
++ Added feature
+* Improved/changed feature
+- Bug fixed
+! Known issue / missing feature
+
+csm 0.01 - november, 2012
+ + csm server image upload added
+ - camera canvas boder overlap fixed
+ - last Frame canvas image resize fixed
+ ! need to change the way to view/hide the taken frames
+ ! upload user image to add to the animation
+ ! generate a video from the uploaded images (server and client)
+ 
