@@ -12,15 +12,15 @@ get '/js/coffee/:file.js'  do |file|
 end
 
 post '/save/' do
-    content = params[:file]
-    image_id = params[:image_id]
+  content = params[:file]
+  image_id = params[:image_id]
 
-    content = content.gsub 'data:image/png;base64,', ''
-    img = Base64.decode64(content)
+  content = content.gsub 'data:image/png;base64,', ''
+  img = Base64.decode64(content)
 
-    File.open("img" + image_id + ".png", 'wb') { |file| file.write(img) }
+  File.open("img" + image_id + ".png", 'wb') { |file| file.write(img) }
     
-    200
+  200
 end
 
 
