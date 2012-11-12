@@ -11,6 +11,6 @@ csm 0.01 - november, 2012
  - camera canvas boder overlap fixed
  - last Frame canvas image resize fixed
  ! add a user session to do not overwrite other user's images
+ ! generate a video from the uploaded images (server and client)
  ! need to change the way to view/hide the taken frames
  ! upload user image to add to the animation
- ! generate a video from the uploaded images (server and client)
