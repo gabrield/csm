@@ -102,9 +102,20 @@ class EmptyFrame
             
         @next = ->
             sibling
-    
+            
+    set_el: (el) ->
+        @$el =$(el)
+        @bind_events()
+        
+    bind_events: ->
+        @$el.on 'click', =>
+            @click()
+        
     render: ->
         "<img src='#{@src}'>"
+        
+    click: ->
+        window.last_frame_view.show_frame this
         
         
 class FramebarView extends Backbone.View
@@ -120,9 +131,10 @@ class FramebarView extends Backbone.View
         
         if not (_.isEmpty @frames)
             _.last(@frames).notify_of_sibling new_frame
-        @frames.push new_frame
         
-        @$el.find('ul').append "<li>#{new_frame.render()}</li>"
+        new_frame.set_el $("<li>#{new_frame.render()}</li>").appendTo @$el.find('ul')
+        
+        @frames.push new_frame
         @render()
         
     get_first_frame: ->
