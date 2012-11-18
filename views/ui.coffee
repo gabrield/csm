@@ -61,12 +61,14 @@ class LastFrameView extends Backbone.View
 
         canvas.width = video.videoWidth
         canvas.height = video.videoHeight
+        @image.width video.videoWidth
+        @image.height video.videoHeight
         
         context = canvas.getContext '2d'
         context.drawImage video, 0, 0
         @image.attr 'src', canvas.toDataURL 'image/webp 1'
         window.framebar_view.add_frame @image
-        
+                
     preview: ->
         first_frame = window.framebar_view.get_first_frame()
         @show_frame first_frame
