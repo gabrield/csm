@@ -8,7 +8,7 @@ Legend:
 
 csm 0.01 - november, 2012
  + csm server image upload added
- + click in the taken frame now display it on screen
+ + click over the taken frames now is shown on preview screen
  - camera canvas boder overlap fixed
  - last Frame canvas image resize fixed
  ! add a user session to do not overwrite other user's images
