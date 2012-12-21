@@ -1,4 +1,4 @@
-class Uploader
+class window.Uploader
     save_images:(images,callback) ->
         image_id = 0
         _.each images, (image) =>
