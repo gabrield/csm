@@ -1,12 +1,25 @@
-$view_width: 45%;
+$view_width: 10%s;
 
 body {
     overflow: hidden;
+    overflow-x: scroll;
 }
 
 h1,h2,h3,h4,h5 {
     font-family: 'Ubuntu', sans-serif;
 }
+
+
+.autohide {
+    opacity: 0;
+    &:hover { opacity: 1; }
+    transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+}
+
+
+/* Dialog */
 
 .dialog {
     display: none;
@@ -18,9 +31,14 @@ h1,h2,h3,h4,h5 {
 div.ui-dialog div.ui-dialog-buttonpane div.ui-dialog-buttonset button.ui-button span.ui-button-text {
     font-size: 11px;
 }
+
+div.main-container {
+    width: 400%;
+}
+
 /* Grid */
 
-#main-window > li {
+#main-window > li, div.main-container > li {
     display: inline-block;
     min-width: $view_width;
     vertical-align: top;
@@ -59,7 +77,12 @@ div.ui-dialog div.ui-dialog-buttonpane div.ui-dialog-buttonset button.ui-button 
 
 
 #toolbar-view {
+    position: fixed;
     height: 50px;
+    width: 100%;
+    padding-left: 5px;
+    top: 0;
+    
     h1 {
         position: absolute;
         top: 22px;
@@ -68,32 +91,46 @@ div.ui-dialog div.ui-dialog-buttonpane div.ui-dialog-buttonset button.ui-button 
     }
     & > ul {    
         float: right;
-        margin: 5px 8px;
+        margin: 5px 15px;
         li { display: inline-block; }
+    }
+    button { 
+        height: 42px; 
+        &.icon-only { 
+            position: relative;
+            top: 5px; 
+            & > span { padding-bottom: 8px; }
+        }
     }
 }
 
 #last-frame-view {
     img {
-        width: 320px;
-        height: 280px;
+        width: 640px;
+        height: 480px;
     }
 }
 
 #framebar-view {
     overflow-x: hidden;
     overflow-y: scroll;
-    height: 160px;
-    opacity: 0.85;
-    li {
-        display: inline-block;
-        margin: 5px;
-        img {
-            height: 120px;
-            width: 160px;
-            cursor: move;
-            &:hover {opacity: 0.7;}
+    position: fixed;
+    width: -webkit-calc(100% - 15px);
+    margin-top: -50px;
+    
+    ul {
+        height: 100px;
+        li {
+            display: inline-block;
+            margin: 5px;
+            img {
+                height: 80px;
+                width: 120px;
+                cursor: move;
+                &:hover {opacity: 0.7;}
+            }
+            max-height: 130px;
         }
-        max-height: 170px;
     }
 }
+

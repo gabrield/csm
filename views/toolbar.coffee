@@ -1,5 +1,7 @@
 class window.ToolbarView extends Backbone.View
     events: 
+        'click button#zoomin': 'zoomin'
+        'click button#zoomout': 'zoomout'
         'click button#shot': 'shot'
         'click button#save': 'save'
         'click button#finished': 'finished'
@@ -28,3 +30,8 @@ class window.ToolbarView extends Backbone.View
     preview: ->
         window.last_frame_view.preview()
         
+    zoomin: ->
+        window.main_window_view.zoom.in()
+        
+    zoomout: ->
+        window.main_window_view.zoom.out()

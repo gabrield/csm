@@ -1,9 +1,19 @@
 body {
-  overflow: hidden; }
+  overflow: hidden;
+  overflow-x: scroll; }
 
 h1, h2, h3, h4, h5 {
   font-family: 'Ubuntu', sans-serif; }
 
+.autohide {
+  opacity: 0;
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s; }
+  .autohide:hover {
+    opacity: 1; }
+
+/* Dialog */
 .dialog {
   display: none; }
   .dialog p {
@@ -13,22 +23,25 @@ h1, h2, h3, h4, h5 {
 div.ui-dialog div.ui-dialog-buttonpane div.ui-dialog-buttonset button.ui-button span.ui-button-text {
   font-size: 11px; }
 
+div.main-container {
+  width: 400%; }
+
 /* Grid */
-#main-window > li {
+#main-window > li, div.main-container > li {
   display: inline-block;
-  min-width: 45%;
+  min-width: 10%s;
   vertical-align: top; }
-  #main-window > li.toolbar {
+  #main-window > li.toolbar, div.main-container > li.toolbar {
     width: 100%;
     min-height: 50px;
     display: block; }
-    #main-window > li.toolbar:first-of-type {
+    #main-window > li.toolbar:first-of-type, div.main-container > li.toolbar:first-of-type {
       position: static !important;
       margin-bottom: 30px; }
-    #main-window > li.toolbar:last-of-type {
+    #main-window > li.toolbar:last-of-type, div.main-container > li.toolbar:last-of-type {
       position: absolute;
       bottom: 0; }
-  #main-window > li:not(.toolbar) {
+  #main-window > li:not(.toolbar), div.main-container > li:not(.toolbar) {
     margin: 5px 5px 5px 10px; }
 
 .view {
@@ -44,7 +57,11 @@ div.ui-dialog div.ui-dialog-buttonpane div.ui-dialog-buttonset button.ui-button 
 
 /* Specific views */
 #toolbar-view {
-  height: 50px; }
+  position: fixed;
+  height: 50px;
+  width: 100%;
+  padding-left: 5px;
+  top: 0; }
   #toolbar-view h1 {
     position: absolute;
     top: 22px;
@@ -52,26 +69,36 @@ div.ui-dialog div.ui-dialog-buttonpane div.ui-dialog-buttonset button.ui-button 
     font-size: 22px; }
   #toolbar-view > ul {
     float: right;
-    margin: 5px 8px; }
+    margin: 5px 15px; }
     #toolbar-view > ul li {
       display: inline-block; }
+  #toolbar-view button {
+    height: 42px; }
+    #toolbar-view button.icon-only {
+      position: relative;
+      top: 5px; }
+      #toolbar-view button.icon-only > span {
+        padding-bottom: 8px; }
 
 #last-frame-view img {
-  width: 320px; 
-  height: 280px;}
+  width: 640px;
+  height: 480px; }
 
 #framebar-view {
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 160px;
-  opacity: 0.85; }
-  #framebar-view li {
-    display: inline-block;
-    margin: 5px;
-    max-height: 170px; }
-    #framebar-view li img {
-      height: 120px;
-      width: 160px;
-      cursor: move; }
-      #framebar-view li img:hover {
-        opacity: 0.7; }
+  position: fixed;
+  width: -webkit-calc(100% - 15px);
+  margin-top: -50px; }
+  #framebar-view ul {
+    height: 100px; }
+    #framebar-view ul li {
+      display: inline-block;
+      margin: 5px;
+      max-height: 130px; }
+      #framebar-view ul li img {
+        height: 80px;
+        width: 120px;
+        cursor: move; }
+        #framebar-view ul li img:hover {
+          opacity: 0.7; }

@@ -7,8 +7,8 @@ $(document).ready ->
             buttons:
               ok: -> document.location.href = 'http://google.com/chrome'
     else
-      new MainWindowView el: $ '#main-window'
-      new ToolbarView el: $ '#toolbar-view'
+      window.main_window_view = new MainWindowView el: $ '#main-window'
+      window.toolbar_view = new ToolbarView el: $ '#toolbar-view'
       window.camera_view = new CameraView el: $ '#camera-view'
       window.last_frame_view = new LastFrameView el: $ '#last-frame-view'
       window.EmptyFrame = EmptyFrame
