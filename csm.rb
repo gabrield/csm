@@ -1,8 +1,7 @@
 require 'sinatra'
 require 'coffee-script'
 require 'base64'
-
-require "videoencoder"
+require "./videoencoder"
 
 get '/' do
   erb :index
