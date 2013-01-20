@@ -16,18 +16,9 @@ class VideoEncoder
 
   def encode()
     ffmpeg = Thread.new do
-      p @ffmpeg_cmd, @ffmpeg_prms, @outfile
       system @ffmpeg_cmd + @ffmpeg_prms
     end
     ffmpeg.join
-  end
-
-  def addimg(img)
-    @_imglist.push img
-  end
-
-  def rmimg(img)
-    @_imglist.delete img
   end
 
 end
