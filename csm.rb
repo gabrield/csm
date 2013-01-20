@@ -2,6 +2,8 @@ require 'sinatra'
 require 'coffee-script'
 require 'base64'
 
+require "videoencoder"
+
 get '/' do
   erb :index
 end
@@ -29,6 +31,13 @@ post '/:session_id/save/' do
 end
 
 post '/:session_id/finished/' do
-    200
+  video = VideoEncoder.new params[:session_id] + ".avi"  
+  video.encode
+  200
+end
+
+
+get '/:session_id/download/' do
+  send_file "#{params[:session_id]}/#{params[:session_id]}.avi", :filename => "#{params[:session_id]}.avi", :type => 'Video/avi'
 end
 
