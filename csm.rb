@@ -30,7 +30,7 @@ post '/:session_id/save/' do
 end
 
 post '/:session_id/finished/' do
-  video = VideoEncoder.new params[:session_id] + ".avi"  
+  video = VideoEncoder.new "#{params[:session_id]}", "#{params[:session_id]}/#{params[:session_id]}.avi"  
   video.encode
   200
 end

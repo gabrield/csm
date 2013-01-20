@@ -4,10 +4,10 @@ class VideoEncoder
 @ffmpeg_prms
 @outfile
 
-  def initialize(outputfile)
+  def initialize(imgspath, outputfile)
     @outfile     = outputfile
     @ffmpeg_cmd  = "ffmpeg"
-    @ffmpeg_prms = " -f image2 -i img%d.png -sameq -y " + @outfile
+    @ffmpeg_prms = " -f image2 -i #{imgspath}/img%d.png -sameq -y " + @outfile
   end
 
   def encode()
