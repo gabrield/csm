@@ -1,5 +1,3 @@
-require 'open3'
-
 class VideoEncoder
 
 @ffmpeg_cmd
