@@ -35,8 +35,9 @@ post '/:session_id/finished/' do
   200
 end
 
-get '/:session_id/is_video_ready' do
-    
+get '/:session_id/is_video_ready/' do |session_id|
+   File.exist? "#{session_id}/#{session_id}.avi"
+end
 
 get '/:session_id/download/' do
   send_file "#{params[:session_id]}/#{params[:session_id]}.avi", :filename => "#{params[:session_id]}.avi", :type => 'Video/avi'
