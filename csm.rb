@@ -12,7 +12,6 @@ get '/js/coffee/:file.js'  do |file|
 end
 
 post '/:session_id/save/' do
-
   s_id = params[:session_id]
   
   begin
