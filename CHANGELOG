@@ -9,9 +9,19 @@ Legend:
 csm 0.01 - november, 2012
  + csm server image upload added
  + click over the taken frames now is shown on preview screen
- - camera canvas boder overlap fixed
+ - camera canvas border overlap fixed
  - last Frame canvas image resize fixed
  ! add a user session to do not overwrite other user's images
  ! generate a video from the uploaded images (server and client)
  ! need to change the way to view/hide the taken frames
+ ! upload user image to add to the animation
+
+csm 0.02 - january, 2013
+ + csm server image upload added
+ + click over the taken frames now is shown on preview screen
+ - camera canvas border overlap fixed
+ - last Frame canvas image resize fixed
+ + add a user session to do not overwrite other user's images
+ + generate a video from the uploaded images (server and client)
+ - need to change the way to view/hide the taken frames
  ! upload user image to add to the animation
