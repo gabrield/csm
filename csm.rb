@@ -17,7 +17,7 @@ post '/:session_id/save/' do
   
   begin
     FileUtils.mkdir(s_id)
-  ensure
+  rescue
     content = params[:file]
     image_id = params[:image_id]
 
@@ -36,7 +36,10 @@ post '/:session_id/finished/' do
 end
 
 get '/:session_id/is_video_ready/' do |session_id|
-   File.exist? "#{session_id}/#{session_id}.avi"
+   is_video_ready = File.exist? "#{session_id}/#{session_id}.avi"
+   
+   return 'true' if is_video_ready
+   'false'
 end
 
 get '/:session_id/download/' do
