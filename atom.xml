@@ -4,7 +4,7 @@
   <title><![CDATA[CSM]]></title>
   <link href="http://gabrield.github.com/csm/atom.xml" rel="self"/>
   <link href="http://gabrield.github.com/csm/"/>
-  <updated>2013-01-21T12:57:23-02:00</updated>
+  <updated>2013-01-21T13:05:47-02:00</updated>
   <id>http://gabrield.github.com/csm/</id>
   <author>
     <name><![CDATA[Gabriel Duarte]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[CSM Demo]]></title>
-    <link href="http://gabrield.github.com/csm/blog/2013/01/21/cms-demo/"/>
+    <link href="http://gabrield.github.com/csm/blog/2013/01/21/csm-demo/"/>
     <updated>2013-01-21T12:47:00-02:00</updated>
-    <id>http://gabrield.github.com/csm/blog/2013/01/21/cms-demo</id>
+    <id>http://gabrield.github.com/csm/blog/2013/01/21/csm-demo</id>
     <content type="html"><![CDATA[<p>A video showing the basics of CSM</p>
 
 <p><video width='640' height='480' preload='none' controls poster='http://www.stashmedia.tv/wp-content/uploads/2010/06/mcfluffy_cloud.jpg'><source src='http://devio.us/~gabrield/csm_demo.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></p>
