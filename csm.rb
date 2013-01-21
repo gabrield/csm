@@ -17,7 +17,7 @@ post '/:session_id/save/' do
   
   begin
     FileUtils.mkdir(s_id)
-  rescue
+  ensure
     content = params[:file]
     image_id = params[:image_id]
 
@@ -35,6 +35,8 @@ post '/:session_id/finished/' do
   200
 end
 
+get '/:session_id/is_video_ready' do
+    
 
 get '/:session_id/download/' do
   send_file "#{params[:session_id]}/#{params[:session_id]}.avi", :filename => "#{params[:session_id]}.avi", :type => 'Video/avi'
