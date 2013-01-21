@@ -19,4 +19,4 @@ csm 0.01 - november, 2012
 csm 0.02 - january, 2013
  + add a user session to do not overwrite other user's images
  + generate a video from the uploaded images (server and client)
-- need to change the way to view/hide the taken frames
+ - need to change the way to view/hide the taken frames
