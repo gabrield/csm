@@ -4,7 +4,7 @@
   <title><![CDATA[CSM]]></title>
   <link href="http://gabrield.github.com/csm/atom.xml" rel="self"/>
   <link href="http://gabrield.github.com/csm/"/>
-  <updated>2013-01-21T10:00:01-02:00</updated>
+  <updated>2013-01-21T12:54:17-02:00</updated>
   <id>http://gabrield.github.com/csm/</id>
   <author>
     <name><![CDATA[Gabriel Duarte]]></name>
@@ -12,5 +12,16 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[CSM Demo]]></title>
+    <link href="http://gabrield.github.com/csm/blog/2013/01/21/cms-demo/"/>
+    <updated>2013-01-21T12:47:00-02:00</updated>
+    <id>http://gabrield.github.com/csm/blog/2013/01/21/cms-demo</id>
+    <content type="html"><![CDATA[<p>A video showing the basics of CSM</p>
+
+<p><video width='640' height='320' preload='none' controls poster=''><source src='http://devio.us/~gabrield/csm_demo.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></p>
+]]></content>
+  </entry>
   
 </feed>
