@@ -2,7 +2,6 @@ $view_width: 10%s;
 
 body {
     overflow: hidden;
-    overflow-x: scroll;
 }
 
 h1,h2,h3,h4,h5 {
@@ -112,13 +111,12 @@ div.main-container {
 }
 
 #framebar-view {
-    overflow-x: hidden;
-    overflow-y: scroll;
     position: fixed;
     width: -webkit-calc(100% - 15px);
     margin-top: -50px;
     
     ul {
+        overflow-y: scroll;
         height: 100px;
         li {
             display: inline-block;

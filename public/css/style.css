@@ -1,6 +1,5 @@
 body {
-  overflow: hidden;
-  overflow-x: scroll; }
+  overflow: hidden; }
 
 h1, h2, h3, h4, h5 {
   font-family: 'Ubuntu', sans-serif; }
@@ -85,12 +84,11 @@ div.main-container {
   height: 480px; }
 
 #framebar-view {
-  overflow-x: hidden;
-  overflow-y: scroll;
   position: fixed;
   width: -webkit-calc(100% - 15px);
   margin-top: -50px; }
   #framebar-view ul {
+    overflow-y: scroll;
     height: 100px; }
     #framebar-view ul li {
       display: inline-block;
