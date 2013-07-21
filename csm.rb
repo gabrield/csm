@@ -12,10 +12,10 @@ get '/js/coffee/:file.js'  do |file|
 end
 
 post '/:session_id/save/' do
-  s_id = params[:session_id]
+  session_id = params[:session_id]
   
   begin
-    FileUtils.mkdir(s_id)
+    FileUtils.mkdir(session_id)
   rescue
     content = params[:file]
     image_id = params[:image_id]
@@ -23,7 +23,7 @@ post '/:session_id/save/' do
     content = content.gsub 'data:image/png;base64,', ''
     image_data = Base64.decode64 content
 
-    File.open("#{s_id}/img#{image_id}.png", 'wb') { |file| file.write image_data }
+    File.open("#{session_id}/img#{image_id}.png", 'wb') { |file| file.write image_data }
   end 
   200
 end
