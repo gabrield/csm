@@ -7,11 +7,11 @@ $(document).ready ->
             buttons:
               ok: -> document.location.href = 'http://google.com/chrome'
     else
-      window.main_window_view = new MainWindowView el: $ '#main-window'
-      window.toolbar_view = new ToolbarView el: $ '#toolbar-view'
-      window.camera_view = new CameraView el: $ '#camera-view'
-      window.last_frame_view = new LastFrameView el: $ '#last-frame-view'
-      window.EmptyFrame = EmptyFrame
-      window.framebar_view = new FramebarView el: $ '#framebar-view'
+      CSM.main_window_view = new CSM.MainWindowView el: $ '#main-window'
+      CSM.toolbar_view = new CSM.ToolbarView el: $ '#toolbar-view'
+      CSM.camera_view = new CSM.CameraView el: $ '#camera-view'
+      CSM.last_frame_view = new CSM.LastFrameView el: $ '#last-frame-view'
+      CSM.EmptyFrame = CSM.EmptyFrame
+      CSM.framebar_view = new CSM.FramebarView el: $ '#framebar-view'
     
     

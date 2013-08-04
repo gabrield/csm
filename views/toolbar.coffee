@@ -1,4 +1,4 @@
-class window.ToolbarView extends Backbone.View
+class CSM.ToolbarView extends Backbone.View
     events: 
         'click button#zoomin': 'zoomin'
         'click button#zoomout': 'zoomout'
@@ -11,27 +11,27 @@ class window.ToolbarView extends Backbone.View
         @$el.find('button').button()
         
     shot: ->
-        window.last_frame_view.trigger('render')
+        CSM.last_frame_view.trigger('render')
         
     save: ->
         dialog = $('#saving-dialog').dialog
             title: 'Saving'
             modal: yes
             
-        window.uploader.save_images $('img'), =>
+        CSM.uploader.save_images $('img'), =>
             dialog.remove()
             
     finished: ->
-        window.uploader.finished()
+        CSM.uploader.finished()
         $('#finished-dialog').dialog
             title: 'Saving'
             modal: yes
             
     preview: ->
-        window.last_frame_view.preview()
+        CSM.last_frame_view.preview()
         
     zoomin: ->
-        window.main_window_view.zoom.in()
+        CSM.main_window_view.zoom.in()
         
     zoomout: ->
-        window.main_window_view.zoom.out()
+        CSM.main_window_view.zoom.out()

@@ -1,4 +1,4 @@
-class window.CameraView extends Backbone.View
+class CSM.CameraView extends Backbone.View
     initialize: ->
         @canvas = @$el.find('canvas')
         @video = @$el.find('video')

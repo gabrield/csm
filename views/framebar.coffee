@@ -1,4 +1,4 @@
-class window.FramebarView extends Backbone.View
+class CSM.FramebarView extends Backbone.View
     frames: []
 
     render: ->
@@ -6,7 +6,7 @@ class window.FramebarView extends Backbone.View
         @$el.animate scrollTop: @$el.find('img:last').offset().top, 'slow'
     
     add_frame: ($image) ->
-        new_frame = new window.EmptyFrame()
+        new_frame = new CSM.EmptyFrame()
         new_frame.from_image $image
         
         if not (_.isEmpty @frames)

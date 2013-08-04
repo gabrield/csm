@@ -1,4 +1,4 @@
-class window.EmptyFrame
+class CSM.EmptyFrame
     constructor: ->
         true
         
@@ -30,6 +30,6 @@ class window.EmptyFrame
         "<img src='#{@src}'>"
         
     click: ->
-        window.last_frame_view.show_frame this
+        CSM.last_frame_view.show_frame this
         
         
