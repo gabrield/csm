@@ -18,7 +18,7 @@ class CSM.ToolbarView extends Backbone.View
             title: 'Saving'
             modal: yes
             
-        CSM.uploader.save_images $('img'), =>
+        CSM.uploader.save_images =>
             dialog.remove()
             
     finished: ->

@@ -1,4 +1,8 @@
 class CSM.EmptyFrame
+
+    sequence_number: -> 
+        $el.index()
+
     constructor: ->
         true
         
@@ -6,17 +10,10 @@ class CSM.EmptyFrame
         @src = $image.attr 'src'
         
     has_next: ->
-        no
+        not @framebar.is_last_frame @
     
     next: ->
-        off
-    
-    notify_of_sibling: (sibling) ->
-        @has_next = ->
-            yes
-            
-        @next = ->
-            sibling
+        @framebar.frames[@sequence_number()]
             
     set_el: (el) ->
         @$el =$(el)
